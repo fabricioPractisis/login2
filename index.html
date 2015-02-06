@@ -47,12 +47,13 @@ var datosPassword = $("#clave").val()
 archivoValidacion = "https://www.practisis.net/loginPhoneGap.php?jsoncallback=?"
 $.getJSON( archivoValidacion, { usuario:datosUsuario ,password:datosPassword})
 .done(function(respuestaServer) {
-alert(respuestaServer.mensaje + "\nGenerado en: " + respuestaServer.hora + "\n" +respuestaServer.generador)
+
 if(respuestaServer.validacion == "ok"){
-/// si la validacion es correcta, muestra la pantalla "home"
+alert(respuestaServer.mensaje)
 $.mobile.changePage("#home")
-}else{
-/// ejecutar una conducta cuando la validacion falla
+}else if(respuestaServer.validacion == "error"){
+alert(respuestaServer.mensaje)
+$.mobile.changePage("#inicio")
 }
 })
 return false;
